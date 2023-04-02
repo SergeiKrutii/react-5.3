@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { StyledHeader } from "./StyledSearchBar";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -14,7 +14,7 @@ const Searchbar = ({ onSubmit }) => {
     e.preventDefault();
 
     if (query === "") {
-      toast.warning("Enter what you want to find");
+      toast.warning("Please, enter what you want to find");
       return;
     }
 

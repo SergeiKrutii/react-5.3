@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import Searchbar from "./Searchbar/Searchbar";
 import styled from "styled-components";
@@ -10,23 +10,19 @@ const StyledApp = styled.div`
   padding-bottom: 24px;
 `;
 
-export default class App extends Component {
-  state = {
-    query: "",
-    largeimage: null,
+const App = (props) => {
+  const [query, setQuery] = useState("");
+
+  const onSubmit = (newQuery) => {
+    setQuery(newQuery);
   };
 
-  onSubmit = (newQuery) => {
-    this.setState({ query: newQuery });
-  };
+  return (
+    <StyledApp>
+      <Searchbar onSubmit={onSubmit} />
+      <ImageGallery query={query} />
+    </StyledApp>
+  );
+};
 
-  render() {
-    const { query } = this.state;
-    return (
-      <StyledApp>
-        <Searchbar onSubmit={this.onSubmit} />
-        <ImageGallery query={query} />
-      </StyledApp>
-    );
-  }
-}
+export default App;
